@@ -3,7 +3,6 @@ import ProductCard from "@/components/general/product-card";
 import { SITE_URL } from "@/lib/constants";
 import { getCategories, getProductsByCategory } from "@/lib/data";
 import { buildCategoryMeta } from "@/lib/seo/category";
-// import { humanize } from "@/lib/strings";
 import { Category, Product } from "@/types";
 import { Metadata } from "next";
 import { BsEmojiDizzy } from "react-icons/bs";
@@ -23,7 +22,6 @@ export async function generateMetadata({
   params: Promise<{ categoryName: string }>;
 }): Promise<Metadata> {
   const slug = (await params).categoryName;
-  // const titleStr = humanize(slug);
   const { title, description, canonical } = buildCategoryMeta({
     siteUrl: SITE_URL,
     categorySlug: slug,
@@ -67,7 +65,7 @@ export default async function CategoryPage({
   return (
     <div className="container">
       <CustomBreadcrumb />
-      <h1 className="bg-gray-100 capitalize my-5 text-4xl center rounded-2xl min-h-[30vh]">
+      <h1 className="bg-gray-100 capitalize my-5 text-2xl md:text-4xl center rounded-2xl min-h-[30vh]">
         {categoryName}
       </h1>
       <div className="py-10">

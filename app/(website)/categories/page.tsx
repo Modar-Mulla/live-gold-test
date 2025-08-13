@@ -15,7 +15,7 @@ export default async function page() {
     <section className="categories">
       <div className="container">
         <CustomBreadcrumb />
-        <h1 className="bg-gray-100 capitalize my-5 text-4xl center rounded-2xl min-h-[30vh]">
+        <h1 className="bg-gray-100 capitalize my-5 text-2xl md:text-4xl center rounded-2xl min-h-[30vh]">
           Categories
         </h1>
         <div className="py-10">

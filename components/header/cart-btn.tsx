@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { Button } from "../ui/button";
 import { useCartStore, useRemoveItem } from "@/store";
 import {
@@ -14,10 +14,13 @@ import { BsBag } from "react-icons/bs";
 import Link from "next/link";
 import Image from "next/image";
 export default function CartBtn() {
+  // store
   const items = useCartStore((state) => state.items);
   const removeItem = useRemoveItem();
+  // state
+  const [open, setOpen] = useState(false);
   return (
-    <Dialog>
+    <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         <Button className="flex bg-transparent hover:bg-transparent hover:opacity-80 duration-[0.4s]">
           <span className="items-count center size-6 bg-secondary text-secondary-foreground rounded-full">
@@ -37,7 +40,7 @@ export default function CartBtn() {
         {items.length === 0 ? (
           <div className="min-h-[50vh] flex gap-10 justify-center items-center flex-col">
             <p className="text-lg text-gray-400">No items found</p>
-            <Link href={"/products"}>
+            <Link href={"/products"} onClick={() => setOpen(false)}>
               <Button size={"lg"} className="h-14 bg-secondary rounded-full">
                 Start Shopping
               </Button>

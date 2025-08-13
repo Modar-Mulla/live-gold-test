@@ -7,8 +7,8 @@ import { ArrowLeft, ArrowRight } from "lucide-react";
 
 type PaginationProps = {
   totalPages: number;
-  currentPage: number; // 1-based index you computed from skip/limit
-  limit?: number; // page size; required to compute skip (falls back to URL or 24)
+  currentPage: number; 
+  limit?: number; 
   className?: string;
 };
 

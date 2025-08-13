@@ -35,9 +35,10 @@ import { useEffect, useState } from "react";
 import { Skeleton } from "../ui/skeleton";
 
 export default function Header() {
+  // state
   const [isAuth, setIsAuth] = useState(false);
   const [loading, setLoading] = useState(true);
-
+  const [open, setOpen] = useState(false);
   useEffect(() => {
     const fetchAuth = async () => {
       const res = await getAuth();
@@ -130,7 +131,7 @@ export default function Header() {
                 )}
 
                 <CartBtn />
-                <Sheet>
+                <Sheet open={open} onOpenChange={setOpen}>
                   <SheetTrigger className="center text-secondary-foreground cursor-pointer md:hidden bg-secondary p-0 rounded-full size-10 hover:opacity-80 hover:bg-secondary duration-[0.4s] transition-opacity">
                     <GiHamburgerMenu />
                   </SheetTrigger>
@@ -141,22 +142,37 @@ export default function Header() {
                     </SheetHeader>
                     <div>
                       <ul className="relative p-5 flex flex-col md:flex-row items-start justify-center gap-5">
-                        <li className="m-0 md:mx-4 cursor-pointer text-foreground-dark hover:text-secondary transition duration-[0.4s]">
+                        <li
+                          onClick={() => setOpen(false)}
+                          className="m-0 md:mx-4 cursor-pointer text-foreground-dark hover:text-secondary transition duration-[0.4s]"
+                        >
                           <Link href="/">Home</Link>
                         </li>
-                        <li className="m-0 md:mx-4 cursor-pointer text-foreground-dark hover:text-secondary transition duration-[0.4s]">
+                        <li
+                          onClick={() => setOpen(false)}
+                          className="m-0 md:mx-4 cursor-pointer text-foreground-dark hover:text-secondary transition duration-[0.4s]"
+                        >
                           <Link href="/products">Products</Link>
                         </li>
-                        <li className="catgs-drop-btn w-full m-0 md:mx-4 cursor-pointer text-foreground-dark hover:text-secondary transition duration-[0.4s] group">
+                        <li
+                          onClick={() => setOpen(false)}
+                          className="catgs-drop-btn w-full m-0 md:mx-4 cursor-pointer text-foreground-dark hover:text-secondary transition duration-[0.4s] group"
+                        >
                           <div className="flex flex-col group">
-                            <div className="flex items-center">
+                            <Link
+                              href={"/categories"}
+                              className="flex items-center"
+                            >
                               Categories{" "}
                               <RiArrowDownSLine className=" transition-transform duration-[0.4s]" />
-                            </div>
+                            </Link>
                             <div className="catgs-menu py-5 w-full">
                               <div className="">
                                 <div className="col">
-                                  <ul className="by-catgs !text-foreground-dark">
+                                  <ul
+                                    onClick={() => setOpen(false)}
+                                    className="by-catgs !text-foreground-dark"
+                                  >
                                     <li>
                                       <Link
                                         href="/categories/laptops"

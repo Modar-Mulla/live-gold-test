@@ -1,4 +1,3 @@
-// lib/seo/login.ts
 import type { Metadata } from "next";
 import { SITE_URL } from "@/lib/constants";
 

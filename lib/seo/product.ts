@@ -1,9 +1,8 @@
-// lib/seo/product.ts
 import type { Metadata } from "next";
 import type { Product } from "@/types";
 
 export const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL || "https://www.alien-ecommerce.com";
+  process.env.NEXT_PUBLIC_SITE_URL
 
 export function buildProductMeta(product: Product): Metadata {
   const title = `${product.title} | Alien E-commerce`;

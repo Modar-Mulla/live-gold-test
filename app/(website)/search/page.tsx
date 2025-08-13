@@ -5,8 +5,7 @@ import { Product } from "@/types";
 import { Metadata } from "next";
 import { BsEmojiDizzy } from "react-icons/bs";
 
-const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL || "https://www.alien-ecommerce.com";
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL;
 
 export async function generateMetadata({
   searchParams,
@@ -68,7 +67,7 @@ export default async function Search({
     <section className="products">
       <div className="container">
         <CustomBreadcrumb />
-        <h1 className="bg-gray-100 capitalize my-5 text-4xl center gap-2 rounded-2xl min-h-[30vh]">
+        <h1 className="bg-gray-100 capitalize my-5 text-2xl md:text-4xl center gap-2 rounded-2xl min-h-[30vh]">
           <span>Search results for</span>
           <span className="text-secondary">{query}</span>
         </h1>

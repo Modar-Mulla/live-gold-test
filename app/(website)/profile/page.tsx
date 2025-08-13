@@ -11,8 +11,7 @@ import { formatDate } from "@/lib/strings";
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
-const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL || "https://www.alien-ecommerce.com";
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL;
 
 export const metadata: Metadata = {
   title: "Profile | Alien E-commerce",

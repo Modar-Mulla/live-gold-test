@@ -55,11 +55,9 @@ export function useLazyLoad<TResponse, TItem>(
   const buildUrl = useCallback(
     (customSkip: number) => {
       const url = new URL(endpoint);
-      // limit/skip
       url.searchParams.set("limit", String(limit));
       url.searchParams.set("skip", String(customSkip));
 
-      // extra query
       Object.entries(query ?? {}).forEach(([k, v]) => {
         if (v !== undefined && v !== null && v !== "") {
           url.searchParams.set(k, String(v));
@@ -119,7 +117,6 @@ export function useLazyLoad<TResponse, TItem>(
     if (typeof total === "number") {
       return items.length < total;
     }
-    // If total unknown, assume more if last page size == limit
     return items.length === 0 || items.length % limit === 0;
   }, [items.length, limit, total]);
 
