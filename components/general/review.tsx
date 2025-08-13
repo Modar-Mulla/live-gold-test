@@ -1,4 +1,5 @@
-import { Review as ReviewT} from "@/types";
+import { Review as ReviewT } from "@/types";
+import { format } from "date-fns";
 
 export default function Review({ review }: { review: ReviewT }) {
   return (
@@ -60,7 +61,7 @@ export default function Review({ review }: { review: ReviewT }) {
       </div>
       <footer className="mb-5 text-sm text-gray-500 dark:text-gray-400">
         <p>
-          <time>{review.date.toString()}</time>
+          <time>{format(new Date(review.date), "dd/MM/yyyy HH:mm")}</time>
         </p>
       </footer>
       <p className="mb-2 text-gray-500 dark:text-gray-400">{review.comment}</p>

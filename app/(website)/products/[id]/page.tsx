@@ -15,10 +15,8 @@ export const dynamic = "force-static";
 export const dynamicParams = false;
 
 export async function generateStaticParams() {
-  const res = await getProducts({ limit: "0" });
-  
-  if (!res.success)
-    throw new Error(`Failed to fetch product IDs: ${res.success}`);
+  const res = await getProducts({ limit: "0", skip: "0" });
+
   const data = await res.data;
 
   const products: Array<{ id: string | number }> = data?.products ?? [];

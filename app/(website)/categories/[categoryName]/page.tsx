@@ -3,7 +3,7 @@ import ProductCard from "@/components/general/product-card";
 import { SITE_URL } from "@/lib/constants";
 import { getCategories, getProductsByCategory } from "@/lib/data";
 import { buildCategoryMeta } from "@/lib/seo/category";
-import { humanize } from "@/lib/strings";
+// import { humanize } from "@/lib/strings";
 import { Category, Product } from "@/types";
 import { Metadata } from "next";
 import { BsEmojiDizzy } from "react-icons/bs";
@@ -14,7 +14,7 @@ export const dynamicParams = false;
 export async function generateStaticParams() {
   const categories = (await getCategories()).data as Category[];
 
-  return categories.map((c) => ({ categoryName: c.name }));
+  return categories.map((c) => ({ categoryName: c.slug }));
 }
 
 export async function generateMetadata({
@@ -23,11 +23,11 @@ export async function generateMetadata({
   params: Promise<{ categoryName: string }>;
 }): Promise<Metadata> {
   const slug = (await params).categoryName;
-  const titleStr = humanize(slug);
+  // const titleStr = humanize(slug);
   const { title, description, canonical } = buildCategoryMeta({
     siteUrl: SITE_URL,
     categorySlug: slug,
-    categoryTitle: titleStr,
+    categoryTitle: slug,
   });
   return {
     title,
@@ -66,26 +66,26 @@ export default async function CategoryPage({
 
   return (
     <div className="container">
-    <CustomBreadcrumb />
-    <h1 className="bg-gray-100 capitalize my-5 text-4xl center rounded-2xl min-h-[30vh]">
-      {categoryName}
-    </h1>
-    <div className="py-10">
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-5 md:gap-10">
-        {products.length == 0 ? (
-          <div className="space-y-5 text-2xl text-secondary col-span-full flex flex-col justify-center items-center">
-            <BsEmojiDizzy className="size-20" />
-            <p>No Products.</p>
-          </div>
-        ) : (
-          products.map((product) => (
-            <div className="group" key={product.id}>
-              <ProductCard product={product} />
+      <CustomBreadcrumb />
+      <h1 className="bg-gray-100 capitalize my-5 text-4xl center rounded-2xl min-h-[30vh]">
+        {categoryName}
+      </h1>
+      <div className="py-10">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-5 md:gap-10">
+          {products.length == 0 ? (
+            <div className="space-y-5 text-2xl text-secondary col-span-full flex flex-col justify-center items-center">
+              <BsEmojiDizzy className="size-20" />
+              <p>No Products.</p>
             </div>
-          ))
-        )}
+          ) : (
+            products.map((product) => (
+              <div className="group" key={product.id}>
+                <ProductCard product={product} />
+              </div>
+            ))
+          )}
+        </div>
       </div>
     </div>
-  </div>
   );
 }

@@ -56,4 +56,26 @@ Examples:
 Login Credintials for login test:
       "username": "emilys",
       "password": "emilyspass",
+
+
+
+API (Mock: DummyJSON)
+GET	/products
+
+GET	/products/:id	Single product object	:id is numeric (e.g., 1)
+
+GET	/products/search?q=<term>	Search results in list shape	q is the search term
+
+GET	/products/categories	Category list	Returns category slugs/names
+
+GET	/products/category/:category	Products in a category (list shape)	:category is a slug (e.g., laptops, home-decoration)
+
+POST /user/login {username,password} return accessToken
+
+for testing
+        "username": "emilys",
+        "password": "emilyspass",
+
+GET /auth/me for verifing the token
+
 ````

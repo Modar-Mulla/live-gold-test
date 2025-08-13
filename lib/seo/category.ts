@@ -1,4 +1,5 @@
 import type { Product } from "@/types";
+import { humanize } from "../strings";
 
 export function categoryJsonLd(params: {
   siteUrl: string;
@@ -15,14 +16,14 @@ export function categoryJsonLd(params: {
     itemListElement: [
       { "@type": "ListItem", position: 1, name: "Home", item: `${siteUrl}/` },
       { "@type": "ListItem", position: 2, name: "Categories", item: `${siteUrl}/categories` },
-      { "@type": "ListItem", position: 3, name: categoryTitle, item: categoryUrl },
+      { "@type": "ListItem", position: 3, name: humanize(categoryTitle), item: categoryUrl },
     ],
   };
 
   const itemList = {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
-    name: `${categoryTitle} | Alien E-commerce`,
+    name: `${humanize(categoryTitle)} | Alien E-commerce`,
     url: categoryUrl,
     isPartOf: { "@type": "WebSite", name: "Alien E-commerce", url: siteUrl },
     mainEntity: {
@@ -63,7 +64,7 @@ export function buildCategoryMeta({
   categoryTitle: string;
 }) {
   const canonical = `${siteUrl}/categories/${encodeURIComponent(categorySlug)}`;
-  const title = `${categoryTitle} | Alien E-commerce`;
-  const description = `Shop ${categoryTitle} at Alien E-commerce — curated picks with fast delivery and secure checkout.`;
+  const title = `${humanize(categoryTitle)} | Alien E-commerce`;
+  const description = `Shop ${humanize(categoryTitle)} at Alien E-commerce — curated picks with fast delivery and secure checkout.`;
   return { title, description, canonical };
 }

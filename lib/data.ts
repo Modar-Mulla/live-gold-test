@@ -56,7 +56,7 @@ export async function getProducts(query: { skip?: string, limit?: string } = {})
       url.searchParams.append("skip", query.skip)
     }
     if (query?.limit) {
-      url.searchParams.append("skip", query.limit)
+      url.searchParams.append("limit", query.limit)
     }
 
     const response = await fetch(url, {
