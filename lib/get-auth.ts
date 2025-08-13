@@ -3,7 +3,7 @@
 
 import { cookies } from "next/headers";
 
-const API_URL = process.env.DUMMY ? process.env.DUMMY_API : process.env.JSON_SERVER_API
+const API_URL = process.env.DUMMY_API
 export async function getAuth() {
   try {
     if (!API_URL) {
